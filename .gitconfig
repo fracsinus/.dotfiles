@@ -1,0 +1,7 @@
+[user]
+  name = fracsinus
+  email = fracsinus@gmail.com
+[core]
+  excludesFile = ~/.gitexclude
+[init]
+  defaultBranch = main
