@@ -95,3 +95,6 @@ autocmd FileType python setlocal colorcolumn=80
 
 " for *.py files, disable double indentation after a open parenthesis
 let g:pyindent_open_paren = 'shiftwidth()'
+
+" (Visual) Ctrl+c to copy into clipboard register
+vnoremap <C-c> "+y
