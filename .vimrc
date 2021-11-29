@@ -10,6 +10,7 @@ Plug 'tpope/vim-repeat' " use . to repeat action
 Plug 'kien/ctrlp.vim' " use C-p to initiate path finder (using path input)
 Plug 'junegunn/fzf.vim' "
 Plug 'udalov/kotlin-vim'
+Plug 'altercation/vim-colors-solarized'
 
 
 call plug#end()
@@ -59,8 +60,8 @@ cmap w!! %!sudo tee > /dev/null %
 set nu
 
 syntax enable
-" set background=light
-" colorscheme solarized
+set background=light
+colorscheme solarized
 
 " Highlight EOL whitespace, http://vim.wikia.com/wiki/Highlight_unwanted_spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -98,3 +99,4 @@ let g:pyindent_open_paren = 'shiftwidth()'
 
 " (Visual) Ctrl+c to copy into clipboard register
 vnoremap <C-c> "+y
+language messages en_US
