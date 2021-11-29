@@ -3,5 +3,6 @@
   email = fracsinus@gmail.com
 [core]
   excludesFile = ~/.gitexclude
+  editor = nvim
 [init]
   defaultBranch = main
