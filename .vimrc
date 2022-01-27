@@ -11,7 +11,7 @@ Plug 'kien/ctrlp.vim' " use C-p to initiate path finder (using path input)
 Plug 'junegunn/fzf.vim' "
 Plug 'udalov/kotlin-vim'
 Plug 'altercation/vim-colors-solarized'
-
+Plug 'leafgarland/typescript-vim' " typescript
 
 call plug#end()
 
@@ -52,7 +52,7 @@ nnoremap <F4> :browse tabnew<CR>
 " F5 to open an empty tab
 nnoremap <F5> :tabnew<CR>
 
-nnoremap <CR> G
+" nnoremap <CR> G
 
 " w!! to write as root
 cmap w!! %!sudo tee > /dev/null %
