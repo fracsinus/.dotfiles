@@ -1,14 +1,12 @@
 # pyenv init
 if command -v pyenv 1>/dev/null 2>&1
-  set -Ux PYENV_ROOT $HOME/.pyenv
-  set -Ux fish_user_paths $PYENV_ROOT/bin $fish_user_paths
   pyenv init - | source
   pyenv init --path | source
 end
 
-# pyenv-virtualenv init
-#status --is-interactive; and pyenv virtualenv-init - | source
 
+# pyenv-virtualenv init
+status --is-interactive; and pyenv virtualenv-init - | source
 
 # oh-my-fish theme options
 ## bobthefish
@@ -23,3 +21,5 @@ set -g theme_color_scheme nord
 
 abbr --add --global -- gfu "git fetch upstream"
 abbr --add --global -- gpo "git push origin"
+abbr --add --global -- grst "git restore --staged"
+abbr --add --global -- grhs "git reset --soft"

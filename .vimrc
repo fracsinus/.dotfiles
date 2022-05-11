@@ -61,7 +61,7 @@ set nu
 
 syntax enable
 set background=light
-colorscheme solarized
+" colorscheme solarized
 
 " Highlight EOL whitespace, http://vim.wikia.com/wiki/Highlight_unwanted_spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -99,4 +99,10 @@ let g:pyindent_open_paren = 'shiftwidth()'
 
 " (Visual) Ctrl+c to copy into clipboard register
 vnoremap <C-c> "+y
-language messages en_US
+language messages en_US.UTF-8
+
+" transparent background
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+highlight ColorColumn ctermbg=none
+highlight LineNr ctermbg=none
