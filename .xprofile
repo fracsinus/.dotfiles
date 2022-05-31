@@ -1,0 +1,7 @@
+GTK_IM_MODULE=uim
+QT_IM_MODULE=uim
+uim-xim &
+XMODIFIERS=@im=uim
+
+picom &
+/usr/bin/VBoxClient-all
