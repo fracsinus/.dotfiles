@@ -268,14 +268,14 @@ globalkeys = gears.table.join(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end,
-        {description = "go back", group = "client"}),
+    -- awful.key({ modkey,           }, "Tab",
+    --     function ()
+    --         awful.client.focus.history.previous()
+    --         if client.focus then
+    --             client.focus:raise()
+    --         end
+    --     end,
+    --     {description = "go back", group = "client"}),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
@@ -315,8 +315,8 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+    -- awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+    --           {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x",
               function ()
@@ -454,8 +454,11 @@ globalkeys = gears.table.join(globalkeys,
     awful.key({ modkey, }, "Left", function() awful.client.focus.bydirection("left", client.focus) end,
               {description = "Focus left", group = "client"}),
     awful.key({ modkey, }, "Right", function() awful.client.focus.bydirection("right", client.focus) end,
-              {description = "Focus right", group = "client"})
-    -- awful.key({ modkey, }, "", , {}),
+              {description = "Focus right", group = "client"}),
+    awful.key({ modkey,           }, "Tab", function () awful.spawn("rofi -show window") end,
+              {description = "Run rofi windows", group = "client"}),
+    awful.key({ modkey },            "r",     function () awful.spawn("rofi -show combi") end,
+              {description = "Run rofi", group = "launcher"})
     -- awful.key({ modkey, }, "", , {}),
     -- awful.key({ modkey, }, "", , {}),
 )
