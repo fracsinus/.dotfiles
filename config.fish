@@ -35,3 +35,7 @@ abbr --add --global -- grhs "git reset --soft"
 # fnm
 
 fnm env --use-on-cd | source
+
+# TIME_STYLE
+
+set -x TIME_STYLE "+%Y-%m-%d %H:%M:%S"
