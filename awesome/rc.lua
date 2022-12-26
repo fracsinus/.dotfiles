@@ -48,9 +48,12 @@ end
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.init("/home/user/.config/awesome/theme.lua")
+-- naughty.notify({ preset = naughty.config.presets.critical,
+--                  title = "wallpaper",
+--                  text = beautiful.wallpaper })
 
 -- This is used later as the default terminal and editor to run.
-terminal = "gnome-terminal"
+terminal = "konsole"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -159,7 +162,8 @@ local function set_wallpaper(s)
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
-        gears.wallpaper.maximized(wallpaper, s, true)
+        -- gears.wallpaper.maximized(wallpaper, s, true)
+        gears.wallpaper.fit("/home/user/Images/Jacqueline.jpg", s)
     end
 end
 
