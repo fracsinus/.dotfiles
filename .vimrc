@@ -11,7 +11,9 @@ Plug 'kien/ctrlp.vim' " use C-p to initiate path finder (using path input)
 Plug 'junegunn/fzf.vim' "
 Plug 'udalov/kotlin-vim'
 Plug 'altercation/vim-colors-solarized'
+Plug 'arcticicestudio/nord-vim' " Nord colorscheme
 Plug 'leafgarland/typescript-vim' " typescript
+Plug 'posva/vim-vue' " Vue
 
 call plug#end()
 
@@ -59,9 +61,12 @@ cmap w!! %!sudo tee > /dev/null %
 
 set nu
 
-syntax enable
-set background=light
+" syntax-enable
+
+" set termguicolors
+" set background=light
 " colorscheme solarized
+colorscheme nord
 
 " Highlight EOL whitespace, http://vim.wikia.com/wiki/Highlight_unwanted_spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -105,4 +110,6 @@ language messages en_US.UTF-8
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
 highlight ColorColumn ctermbg=none
-highlight LineNr ctermbg=none
+highlight LineNr ctermbg=none ctermfg=6
+
+let g:python3_host_prog = '/usr/bin/python'
