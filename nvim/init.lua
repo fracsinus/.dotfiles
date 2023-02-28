@@ -79,8 +79,10 @@ vim.g["python3_host_prog"] = '/usr/bin/python'
 -- set exrc
 
 require("mapping")
-require("trouble").setup({})
+
+require("trouble").setup({ mode = "document_diagnostics", use_diagnostic_sign = true })
 vim.api.nvim_set_keymap("n", "<C-Q>", ":TroubleToggle<CR>", { noremap = true })
 
 require("autocomplete")
 require("lsp")
+
