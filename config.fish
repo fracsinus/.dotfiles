@@ -31,6 +31,8 @@ abbr --add --global -- gfu "git fetch upstream"
 abbr --add --global -- gpo "git push origin"
 abbr --add --global -- grst "git restore --staged"
 abbr --add --global -- grhs "git reset --soft"
+abbr --add --global -- gdn "git diff --name-only"
+alias v nvim
 
 # fnm
 
