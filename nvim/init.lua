@@ -1,4 +1,7 @@
-require("plugins")
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+require("plugins") -- install plugins
 
 local nvim_exec = vim.api.nvim_exec
 
@@ -78,11 +81,23 @@ vim.g["python3_host_prog"] = '/usr/bin/python'
 
 -- set exrc
 
-require("mapping")
 
+-- plugin settings
+
+---- diagnostics list
 require("trouble").setup({ mode = "document_diagnostics", use_diagnostic_sign = true })
 vim.api.nvim_set_keymap("n", "<C-Q>", ":TroubleToggle<CR>", { noremap = true })
 
+---- statusline customization
+require("lualine").setup({
+  sections = {
+    lualine_c = { { "filename", path = 3 } }
+  }
+})
+
+-- partials
+require("mapping")
+require("explorer")
 require("autocomplete")
 require("lsp")
 

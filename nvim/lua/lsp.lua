@@ -1,10 +1,10 @@
-local wandu_hide_info = true
-local wandu_toggle_hide_info = function()
-  wandu_hide_info = not wandu_hide_info
+local hide_info = true
+local toggle_hide_info = function()
+  hide_info = not hide_info
   -- TODO: refresh diagnostics
 end
 
-vim.keymap.set("n", "_", wandu_toggle_hide_info, { noremap = true })
+vim.keymap.set("n", "+", toggle_hide_info, { noremap = true })
 
 local function filter_unused(arr, func)
   -- Filter in place
@@ -24,7 +24,7 @@ local function is_unused_message(diagnostic)
   -- Allow kwargs to be unused, sometimes you want many functions to take the
   -- same arguments but you don't use all the arguments in all the functions,
   -- so kwargs is used to suck up all the extras
-  if not wandu_hide_info then
+  if not hide_info then
     return true
   end
   if diagnostic.message == '"kwargs" is not accessed' then
