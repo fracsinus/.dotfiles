@@ -7,6 +7,8 @@ local nvim_exec = vim.api.nvim_exec
 
 nvim_exec("language messages en_US.UTF-8", true) -- set UI language
 
+vim.o.hidden = false
+
 -- file encodings
 vim.o.fencs="ucs-bom,utf-8,cp949"
 
@@ -100,4 +102,5 @@ require("mapping")
 require("explorer")
 require("autocomplete")
 require("lsp")
+require("tabs")
 

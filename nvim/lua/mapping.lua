@@ -15,3 +15,7 @@ map("c", "w!!", "%!sudo tee > /dev/null %", {})
 
 -- (Visual) Ctrl+c to copy into clipboard register
 map("v", "<C-c>", '"+y', { noremap = true })
+
+vim.keymap.set("n", "<Leader>q", ":tabc<CR>", { noremap = true })
+-- vim.keymap.set("n", "<C-S-PageUp>", ":-tabmove<CR>", { noremap = true })
+-- vim.keymap.set("n", "<C-S-PageDown>", ":+tabmove<CR>", { noremap = true })
