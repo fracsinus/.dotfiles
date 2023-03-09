@@ -1,6 +1,6 @@
 vim.g.ctrlp_prompt_mappings = {
   ["AcceptSelection(\"t\")"] = { "<CR>" },
-  ["AcceptSelection(\"e\")"] = { },
+  ["AcceptSelection(\"e\")"] = { "<C-Space>" },
 }
 
 local api = require("nvim-tree.api")
