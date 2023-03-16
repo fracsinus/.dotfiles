@@ -98,6 +98,7 @@ require("lualine").setup({
 })
 
 -- partials
+require("syntax")
 require("mapping")
 require("explorer")
 require("autocomplete")

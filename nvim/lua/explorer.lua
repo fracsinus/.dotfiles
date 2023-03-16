@@ -6,6 +6,7 @@ vim.g.ctrlp_prompt_mappings = {
 local api = require("nvim-tree.api")
 vim.keymap.set("n", "-", function() api.tree.open({ update_root = true }) end, { noremap = true })
 vim.keymap.set("n", "_", function() api.tree.open({ update_root = true }) end, { noremap = true })
+vim.keymap.set("n", "<LEADER>e", function() api.tree.toggle({ update_root = true }) end, { noremap = true })
 
 local on_attach = function(bufnr)
 
