@@ -1,9 +1,15 @@
+-- Installation
+local packer = require("packer")
+packer.use("nvim-tree/nvim-tree.lua")
+packer.use("nvim-tree/nvim-web-devicons")
+
+local api = require("nvim-tree.api")
+
 vim.g.ctrlp_prompt_mappings = {
   ["AcceptSelection(\"t\")"] = { "<CR>" },
   ["AcceptSelection(\"e\")"] = { "<C-Space>" },
 }
 
-local api = require("nvim-tree.api")
 vim.keymap.set("n", "-", function() api.tree.open({ update_root = true }) end, { noremap = true })
 vim.keymap.set("n", "_", function() api.tree.open({ update_root = true }) end, { noremap = true })
 vim.keymap.set("n", "<LEADER>e", function() api.tree.toggle({ update_root = true }) end, { noremap = true })
