@@ -1,26 +1,56 @@
 local packer = require("packer")
 
 ---- convenience layer
-packer.use 'neovim/nvim-lspconfig'
+packer.use "neovim/nvim-lspconfig"
 
 ---- autocompletion
-packer.use 'hrsh7th/cmp-buffer'
-packer.use 'hrsh7th/cmp-cmdline'
-packer.use 'hrsh7th/cmp-nvim-lsp-signature-help'
-packer.use 'hrsh7th/cmp-nvim-lsp'
-packer.use 'hrsh7th/cmp-path'
-packer.use 'hrsh7th/nvim-cmp'
-packer.use 'hrsh7th/vim-vsnip'
+packer.use "hrsh7th/cmp-buffer"
+packer.use "hrsh7th/cmp-cmdline"
+packer.use "hrsh7th/cmp-nvim-lsp-signature-help"
+packer.use "hrsh7th/cmp-nvim-lsp"
+packer.use "hrsh7th/cmp-path"
+packer.use "hrsh7th/nvim-cmp"
+packer.use "hrsh7th/vim-vsnip"
 
-packer.use 'ray-x/lsp_signature.nvim'
+packer.use "ray-x/lsp_signature.nvim"
 
 ---- diagnostic in separate list view
-packer.use 'folke/trouble.nvim'
+packer.use "folke/trouble.nvim"
 
+local util = require("lspconfig/util")
+
+local function get_python_path()
+  if vim.env.VIRTUAL_ENV then
+    return util.path.join(vim.env.VIRTUAL_ENV, "bin", "python")
+  end
+
+  return vim.fn.exepath("python")
+end
 
 local hide_info = true
 local toggle_hide_info = function()
+  local buf = vim.api.nvim_create_buf(0, 1)
+  vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
+  vim.api.nvim_buf_set_option(buf, "buftype", "nofile")
+  vim.api.nvim_buf_set_option(buf, "swapfile", false)
+  vim.api.nvim_buf_set_option(buf, "buflisted", false)
+  vim.api.nvim_buf_set_name(buf, "Wandu")
+
+  vim.api.nvim_command("split")
+  vim.api.nvim_set_current_buf(buf)
+
   hide_info = not hide_info
+  local di = vim.diagnostic.get(0)
+  local lines = {}
+  for line in string.gmatch(vim.inspect(di), "[^\r\n]+") do
+    table.insert(lines, line)
+  end
+  vim.api.nvim_buf_set_lines(buf, 0, 0, false, {tostring(hide_info)})
+  vim.api.nvim_buf_set_lines(buf, 1, -1, false, lines)
+
+  -- print(hide_info)
+  -- print(vim.inspect(vim.diagnostic.get(0)))
+  -- vim.diagnostic.show(nil, 0)
   -- TODO: refresh diagnostics
 end
 
@@ -114,6 +144,9 @@ require("lspconfig").pyright.setup({
   },
   on_attach = on_attach_lsp,
   capabilities = capabilities,
+  before_init = function(_, config)
+    config.settings.python.pythonPath = get_python_path()
+  end,
 })
 
 require("lsp_signature").setup({})
@@ -165,7 +198,7 @@ cmp.setup({
   -- { { name = "nvim_lsp_signature_help" } },
   { { name = "buffer" }, }
   ),
-  experimental = { ghost_text = true }
+  experimental = { ghost_text = {} }
 })
 
 -- Set configuration for specific filetype.
@@ -178,10 +211,10 @@ cmp.setup.filetype("gitcommit", {
 })
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline({ '/', '?' }, {
+cmp.setup.cmdline({ "/", "?" }, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = 'buffer' }
+    { name = "buffer" }
   }
 })
 

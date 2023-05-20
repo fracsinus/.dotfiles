@@ -6,7 +6,7 @@ local packer = require("packer")
 packer.init()
 packer.use 'wbthomason/packer.nvim'
 
-require("plugins") -- install plugins
+require("_base") -- install some base plugins
 
 local nvim_exec = vim.api.nvim_exec
 
@@ -81,4 +81,5 @@ require("autocomplete")
 require("lsp")
 require("tabs")
 require("color")
-
+require("_telescope")
+require("_fold")

@@ -1,8 +1,4 @@
-# pyenv init
-if command -v pyenv 1>/dev/null 2>&1
-  pyenv init - | source
-  pyenv init --path | source
-end
+# set -gx TERM xterm-256
 
 set -x EDITOR /usr/bin/nvim
 set -x PATH $HOME/.bin $PATH
@@ -11,6 +7,12 @@ set -x JAVA_HOME /usr/lib/jvm/default
 set -x SPARK_HOME $HOME/spark
 set -x SPARK_CONF_DIR $HOME/spark/conf
 set -x PYTHONPATH $SPARK_HOME/python/:$SPARK_HOME/python/lib/py4j-0.10.9-src.zip:$HOME/glue/PyGlue.zip $PYTHONPATH
+
+# pyenv init
+if command -v pyenv 1>/dev/null 2>&1
+  pyenv init - | source
+  pyenv init --path | source
+end
 
 # pyenv-virtualenv init
 status --is-interactive; and pyenv virtualenv-init - | source
