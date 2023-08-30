@@ -17,6 +17,7 @@ telescope.setup({
       mappings = {
         ["i"] = {
           ["<CR>"] = actions.select_tab,
+          ["<C-o>"] = actions.file_edit,
           ["<Tab>"] = actions.toggle_selection,
           -- ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
           -- ["<S-Tab>"] = actions.toggle_selection,
@@ -27,6 +28,7 @@ telescope.setup({
         },
         ["n"] = {
           ["<CR>"] = actions.select_tab,
+          ["<o>"] = actions.file_edit,
         }
       },
       auto_depth = true,
@@ -41,5 +43,5 @@ local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<C-p>", ":Telescope file_browser<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+vim.keymap.set("n", "<leader>]", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
