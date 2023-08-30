@@ -23,15 +23,15 @@ vim.o.incsearch = true-- use incremental searching
 vim.o.ttimeoutlen = 0 -- remove interval when press esc
 
 ---- indentation
-vim.bo.tabstop = 2
-vim.bo.shiftwidth = 2
-vim.bo.softtabstop = 2
-vim.bo.expandtab = true
-vim.bo.cin = true
-vim.bo.si = true
-vim.bo.inde = nil
-vim.bo.autoindent = true
-vim.bo.smartindent = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
+vim.o.expandtab = true -- insert spaces instead of tab in insert mode
+vim.o.cin = true
+vim.o.si = true
+vim.o.inde = nil
+vim.o.autoindent = true
+vim.o.smartindent = true
 
 ---- display line number
 vim.wo.nu = true
