@@ -12,6 +12,13 @@ packer.use({
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 telescope.setup({
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-d>"] = actions.delete_buffer,
+      }
+    }
+  },
   extensions = {
     file_browser = {
       mappings = {

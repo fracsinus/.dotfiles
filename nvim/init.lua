@@ -35,6 +35,7 @@ vim.o.smartindent = true
 
 ---- display line number
 vim.wo.nu = true
+vim.wo.relativenumber = true
 
 vim.o.splitright = true
 vim.o.splitbelow = true
@@ -60,6 +61,9 @@ vim.g["python3_host_prog"] = '/usr/bin/python'
 
 
 ---- plugin settings
+
+------ treesitter
+require("treesitter")
 
 ------ diagnostics list
 require("trouble").setup({ mode = "document_diagnostics", use_diagnostic_sign = true })

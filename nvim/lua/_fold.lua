@@ -11,6 +11,7 @@ vim.o.foldenable = true
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
 vim.keymap.set("n", "zR", ufo.openAllFolds)
 vim.keymap.set("n", "zM", ufo.closeAllFolds)
+vim.keymap.set("n", "<leader>x", function() ufo.getFolds(0, 'treesitter') end)
 vim.keymap.set('n', 'zK', function()
     local winid = require('ufo').peekFoldedLinesUnderCursor()
     if not winid then
@@ -18,9 +19,10 @@ vim.keymap.set('n', 'zK', function()
     end
 end)
 
+vim.env.UFO_LOG = 'error'
 ufo.setup({
     provider_selector = function(bufnr, filetype, buftype)
         return {"treesitter", "indent"}
     end
 })
-
+-- ufo.setup()

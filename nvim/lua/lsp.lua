@@ -103,6 +103,10 @@ end
 
 -- Set up lspconfig.
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
 
 local on_attach_lsp = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
