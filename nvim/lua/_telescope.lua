@@ -1,7 +1,7 @@
 local packer = require("packer")
 packer.use({"nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 packer.use({
-  "nvim-telescope/telescope.nvim", tag = "0.1.1",
+  "nvim-telescope/telescope.nvim", tag = "0.1.4",
   requires = { {"nvim-lua/plenary.nvim"} }
 })
 packer.use({
