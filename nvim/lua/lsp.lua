@@ -14,9 +14,6 @@ packer.use "hrsh7th/vim-vsnip"
 
 packer.use "ray-x/lsp_signature.nvim"
 
----- diagnostic in separate list view
-packer.use "folke/trouble.nvim"
-
 local util = require("lspconfig/util")
 
 local function get_python_path()
@@ -255,3 +252,8 @@ cmp.setup.cmdline(":", {
     { name = "cmdline" }
   })
 })
+--
+------ diagnostics list
+packer.use("folke/trouble.nvim")
+require("trouble").setup({ mode = "document_diagnostics", use_diagnostic_sign = true })
+vim.api.nvim_set_keymap("n", "<C-Q>", ":TroubleToggle<CR>", { noremap = true })

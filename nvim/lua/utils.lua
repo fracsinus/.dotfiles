@@ -22,3 +22,9 @@ packer.use('tpope/vim-commentary') -- use gc~ to turn current line into a commen
 
 ---- status line
 packer.use('nvim-lualine/lualine.nvim')
+require("lualine").setup({
+  sections = {
+    lualine_c = { { "filename", path = 3 } }
+  }
+})
+

@@ -51,4 +51,4 @@ fnm env --use-on-cd | source
 
 
 ## Rust
-# set -gx PATH $HOME/.cargo/bin $PATH
+set -gx PATH $HOME/.cargo/bin $PATH
