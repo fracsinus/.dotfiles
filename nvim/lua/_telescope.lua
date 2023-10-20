@@ -26,6 +26,7 @@ telescope.setup({
           ["<CR>"] = actions.select_tab,
           ["<C-o>"] = actions.file_edit,
           ["<Tab>"] = actions.toggle_selection,
+          ["/"] = false,
           -- ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
           -- ["<S-Tab>"] = actions.toggle_selection,
           -- ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_worse,

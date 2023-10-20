@@ -24,80 +24,6 @@ local function get_python_path()
   return vim.fn.exepath("python")
 end
 
-local hide_info = true
-local toggle_hide_info = function()
-  local buf = vim.api.nvim_create_buf(0, 1)
-  vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
-  vim.api.nvim_buf_set_option(buf, "buftype", "nofile")
-  vim.api.nvim_buf_set_option(buf, "swapfile", false)
-  vim.api.nvim_buf_set_option(buf, "buflisted", false)
-  vim.api.nvim_buf_set_name(buf, "Wandu")
-
-  vim.api.nvim_command("split")
-  vim.api.nvim_set_current_buf(buf)
-
-  hide_info = not hide_info
-  local di = vim.diagnostic.get(0)
-  local lines = {}
-  for line in string.gmatch(vim.inspect(di), "[^\r\n]+") do
-    table.insert(lines, line)
-  end
-  vim.api.nvim_buf_set_lines(buf, 0, 0, false, {tostring(hide_info)})
-  vim.api.nvim_buf_set_lines(buf, 1, -1, false, lines)
-
-  -- print(hide_info)
-  -- print(vim.inspect(vim.diagnostic.get(0)))
-  -- vim.diagnostic.show(nil, 0)
-  -- TODO: refresh diagnostics
-end
-
-vim.keymap.set("n", "+", toggle_hide_info, { noremap = true })
-
-local function filter_unused(arr, func)
-  -- Filter in place
-  -- https://stackoverflow.com/questions/49709998/how-to-filter-a-lua-array-inplace
-  local new_index = 1
-  local size_orig = #arr
-  for old_index, v in ipairs(arr) do
-      if func(v, old_index) then
-          arr[new_index] = v
-          new_index = new_index + 1
-      end
-  end
-  for i = new_index, size_orig do arr[i] = nil end
-end
-
-local function is_unused_message(diagnostic)
-  -- Allow kwargs to be unused, sometimes you want many functions to take the
-  -- same arguments but you don't use all the arguments in all the functions,
-  -- so kwargs is used to suck up all the extras
-  if not hide_info then
-    return true
-  end
-  if diagnostic.message == '"kwargs" is not accessed' then
-  	return false
-  end
-  --
-  -- Allow variables starting with an underscore
-  if string.match(diagnostic.message, '"_.+" is not accessed') then
-  	return false
-  end
-
-
-  -- For all messages "is not accessed"
-  if string.match(diagnostic.message, '".+" is not accessed') then
-      return false
-  end
-
-  return true
-end
-
-local function custom_handler(a, result, c, config)
-  filter_unused(result.diagnostics, is_unused_message)
-  return vim.lsp.diagnostic.on_publish_diagnostics(a, result, c, config)
-end
-
-
 -- Set up lspconfig.
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.foldingRange = {
@@ -129,18 +55,13 @@ local on_attach_lsp = function(client, bufnr)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
   vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format { async = true } end, bufopts)
 
-  if client.name == "pyright" then
-    -- vim.keymap.set('n', '<Leader>o', '<CMD>PyrightOrganizeImports<CR>')
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-        custom_handler, {})
-  end
 end
 
 require("lspconfig").pyright.setup({
   single_file_support = true,
   settings = {
     analysis = {
-      diagnosticMode = "openFilesOnly"
+      diagnosticMode = "openFilesOnly",
     }
   },
   on_attach = on_attach_lsp,
@@ -152,6 +73,13 @@ require("lspconfig").pyright.setup({
 
 require("lspconfig").lua_ls.setup({
   single_file_support = true,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {'vim'},
+      },
+    }
+  },
   on_init = function(client)
     local path = client.workspace_folders[1].name
     if not vim.loop.fs_stat(path..'/.luarc.json') and not vim.loop.fs_stat(path..'/.luarc.jsonc') then
@@ -252,8 +180,19 @@ cmp.setup.cmdline(":", {
     { name = "cmdline" }
   })
 })
---
------- diagnostics list
+
+-- diagnostics list
 packer.use("folke/trouble.nvim")
 require("trouble").setup({ mode = "document_diagnostics", use_diagnostic_sign = true })
 vim.api.nvim_set_keymap("n", "<C-Q>", ":TroubleToggle<CR>", { noremap = true })
+
+local virtual_text = true
+vim.keymap.set(
+  "n",
+  "+",
+  function()
+    virtual_text = not virtual_text
+    vim.diagnostic.config({virtual_text = virtual_text})
+  end,
+  { noremap = true }
+)
