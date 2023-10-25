@@ -29,4 +29,3 @@ require("lsp.cmp")
 
 -- diagnostics list
 require("lsp.trouble")
-require("lsp.pyright")

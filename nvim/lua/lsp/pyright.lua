@@ -1,4 +1,5 @@
 local base = require("lsp._base")
+local util = require("lspconfig/util")
 
 local function get_python_path()
   if vim.env.VIRTUAL_ENV then
