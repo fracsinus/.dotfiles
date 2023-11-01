@@ -52,14 +52,6 @@ autocmd BufReadPost *
   \ endif
 ]]
 
----- python
--- autocmd FileType python setlocal colorcolumn=80 -- highlight 80th column
-vim.g["pyindent_open_paren"] = 'shiftwidth()' -- disable double indentation after a open parenthesis
-vim.g["python3_host_prog"] = '/usr/bin/python'
-
--- set exrc
-
-
 ---- plugin settings
 
 ------ treesitter
