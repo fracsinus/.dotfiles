@@ -1,3 +1,5 @@
 require("syntax._base")
-require("syntax.python")
+
 require("syntax.lua")
+require("syntax.python")
+require("syntax.sql")
