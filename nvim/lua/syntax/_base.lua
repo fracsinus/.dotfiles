@@ -1,8 +1,5 @@
 local packer = require("packer")
 
--- auto pair parentheses, curly braces, etc.
-packer.use("jiangmiao/auto-pairs")
-
 packer.use('JoosepAlviste/nvim-ts-context-commentstring')
 
 require('nvim-treesitter.configs').setup {

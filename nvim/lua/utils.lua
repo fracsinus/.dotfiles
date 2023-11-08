@@ -4,6 +4,9 @@ vim.g.ctrlp_custom_ignore = {
   dir = "node_modules"
 }
 
+-- auto pair parentheses, curly braces, etc.
+packer.use("jiangmiao/auto-pairs")
+
 ---- utilities
 -- packer.use 'chrisbra/Recover.vim' -- smarter .swp files recovery
 -- packer.use 'justinmk/vim-dirvish' -- use - to initiate path navigator (using arrow keys)
