@@ -54,9 +54,6 @@ autocmd BufReadPost *
 
 ---- plugin settings
 
------- treesitter
-require("treesitter")
-
 ------ diagnostics list
 require("trouble").setup({ mode = "document_diagnostics", use_diagnostic_sign = true })
 vim.api.nvim_set_keymap("n", "<C-Q>", ":TroubleToggle<CR>", { noremap = true })
