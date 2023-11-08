@@ -11,6 +11,14 @@ else
   map("i", "<C-s>", "<ESC>:w<CR>", { noremap = true })
 end
 
+-- simulate line swapping of VSCode
+if not vim.g.vscode then
+  map("n", "<A-Up>", ":m .-2<CR>", { noremap = true })
+  map("n", "<A-Down>", ":m .+1<CR>", { noremap = true })
+  map("v", "<A-Up>", ":m '<-2<CR>gv", { noremap = true })
+  map("v", "<A-Down>", ":m '>+1<CR>gv", { noremap = true })
+end
+
 -- K to remove highlights
 map("n", "K", ":noh<CR>", { noremap = true })
 -- " Alt+Backspace to remove a previous word
