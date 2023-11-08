@@ -19,6 +19,13 @@ if not vim.g.vscode then
   map("v", "<A-Down>", ":m '>+1<CR>gv", { noremap = true })
 end
 
+
+-- navigating in insert mode
+map("i", "<A-h>", "<Left>", { noremap = true })
+map("i", "<A-j>", "<Down>", { noremap = true })
+map("i", "<A-k>", "<Up>", { noremap = true })
+map("i", "<A-l>", "<Right>", { noremap = true })
+
 -- K to remove highlights
 map("n", "K", ":noh<CR>", { noremap = true })
 -- " Alt+Backspace to remove a previous word
