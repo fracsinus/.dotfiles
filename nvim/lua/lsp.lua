@@ -16,6 +16,8 @@ packer.use "ray-x/lsp_signature.nvim"
 
 require("lsp.pyright")
 require("lsp.lua")
+require("lsp.rust")
+require("lsp.typescript")
 
 require("lsp_signature").setup({})
 
