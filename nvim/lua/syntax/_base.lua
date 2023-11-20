@@ -9,15 +9,15 @@ packer.use({
 })
 packer.use('JoosepAlviste/nvim-ts-context-commentstring')
 
+vim.g.skip_ts_context_commentstring_module = true
+require('ts_context_commentstring').setup({
+  languages = {
+    sql = { __default = '/* %s */' },
+  },
+})
+
 require('nvim-treesitter.configs').setup {
   ensure_installed = { 'vue' },
   highlight = { enable = true, },
-  -- indent = { enable= true },
-  context_commentstring = {
-    enable = true,
-    config = {
-      sql = { __default = "/* %s */" }
-    },
-  },
   additional_vim_regex_highlighting = false,
 }
