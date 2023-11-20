@@ -5,7 +5,8 @@ vim.g.ctrlp_custom_ignore = {
 }
 
 -- auto pair parentheses, curly braces, etc.
-packer.use("cohama/lexima.vim")
+packer.use("windwp/nvim-autopairs")
+require("nvim-autopairs").setup({})
 
 ---- utilities
 -- packer.use 'chrisbra/Recover.vim' -- smarter .swp files recovery
