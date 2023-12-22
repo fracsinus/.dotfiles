@@ -27,6 +27,8 @@ abbr --add --global -- gdst "git diff --staged"
 alias v nvim
 
 ## Python
+set -x PYTHONDONTWRITEBYTECODE 1
+
 ### pyenv init
 if command -v pyenv 1>/dev/null 2>&1
   pyenv init - | source
