@@ -7,6 +7,7 @@ packer.use({
     ts_update()
   end,
 })
+
 packer.use('JoosepAlviste/nvim-ts-context-commentstring')
 
 vim.g.skip_ts_context_commentstring_module = true
@@ -17,7 +18,6 @@ require('ts_context_commentstring').setup({
 })
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'vue' },
   highlight = { enable = true, },
   additional_vim_regex_highlighting = false,
 }
