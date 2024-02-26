@@ -26,6 +26,12 @@ abbr --add --global -- gdn "git diff --name-only"
 abbr --add --global -- gdst "git diff --staged"
 alias v nvim
 
+## zoxide
+if command -v zoxide >/dev/null
+  set -x _ZO_EXCLUDE_DIRS "/tmp"
+  zoxide init fish | source
+end
+
 ## Python
 set -x PYTHONDONTWRITEBYTECODE 1
 
