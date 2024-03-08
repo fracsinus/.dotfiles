@@ -18,6 +18,17 @@ if not vim.g.vscode then
   -- vim.api.nvim_exec2("highlight LineNr ctermfg=6", {})
   --
   ---- Highlight EOL whitespace, http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+  vim.cmd [[
+  if !exists('g:vscode')
+    highlight ExtraWhitespace ctermbg=red guibg=red
+    match ExtraWhitespace /\s\+$/
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
+  endif
+  ]]
+
 else
   require("colorscheme._vscode")
 end
