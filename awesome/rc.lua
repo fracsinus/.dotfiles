@@ -53,7 +53,7 @@ beautiful.init("/home/user/.config/awesome/theme.lua")
 --                  text = beautiful.wallpaper })
 
 -- This is used later as the default terminal and editor to run.
-terminal = "konsole"
+terminal = "gnome-terminal"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
