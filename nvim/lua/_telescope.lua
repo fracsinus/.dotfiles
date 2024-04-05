@@ -12,12 +12,20 @@ packer.use({
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 telescope.setup({
-  defaults = {
-    mappings = {
-      i = {
-        ["<C-d>"] = actions.delete_buffer,
-      }
-    }
+  pickers = {
+    buffers = {
+      mappings = {
+        ["i"] = {
+          ["<CR>"] = actions.select_tab,
+          ["<C-o>"] = actions.file_edit,
+          ["<C-d>"] = actions.delete_buffer,
+        },
+        ["n"] = {
+          ["<CR>"] = actions.select_tab,
+          ["<C-o>"] = actions.file_edit,
+        },
+      },
+    },
   },
   extensions = {
     file_browser = {
@@ -32,7 +40,6 @@ telescope.setup({
           -- ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_worse,
           -- ["<M-Tab>"] = actions.toggle_selection + actions.move_selection_better,
           -- ["<M-Tab>"] = actions.toggle_selection,
-
         },
         ["n"] = {
           ["<CR>"] = actions.select_tab,
