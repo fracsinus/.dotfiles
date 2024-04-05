@@ -28,7 +28,7 @@ alias v nvim
 
 ## zoxide
 if command -v zoxide >/dev/null
-  set -x _ZO_EXCLUDE_DIRS "/tmp"
+  set -x _ZO_EXCLUDE_DIRS "/tmp:/tmp/*"
   zoxide init fish | source
 end
 
