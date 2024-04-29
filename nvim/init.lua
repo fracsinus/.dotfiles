@@ -58,13 +58,6 @@ autocmd BufReadPost *
 require("trouble").setup({ mode = "document_diagnostics", use_diagnostic_sign = true })
 vim.api.nvim_set_keymap("n", "<C-Q>", ":TroubleToggle<CR>", { noremap = true })
 
------- statusline customization
-require("lualine").setup({
-  sections = {
-    lualine_c = { { "filename", path = 3 } }
-  }
-})
-
 ---- partials
 require("utils")
 require("syntax")
