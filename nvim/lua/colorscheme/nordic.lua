@@ -6,7 +6,7 @@ local nord_8 = "#5E81AC"
 vim.cmd(string.format([[
   augroup nord-theme-overrides
     autocmd!
-    autocmd ColorScheme nord highlight Comment guifg=%s
+    autocmd ColorScheme nordic highlight Comment guifg=%s
   augroup end
 ]], nord_8))
 vim.o.cursorline = 1
