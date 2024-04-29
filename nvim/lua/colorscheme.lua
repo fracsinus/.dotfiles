@@ -2,7 +2,8 @@ local packer = require("packer")
 
 if not vim.g.vscode then
   -- require("colorscheme.nordic")
-  require("colorscheme.nightfox")
+  -- require("colorscheme.nightfox")
+  require("colorscheme.catppuccin")
   ---- enable 24-bit color
   if vim.fn.has('termguicolors') then
     vim.api.nvim_exec2("set termguicolors", {})
