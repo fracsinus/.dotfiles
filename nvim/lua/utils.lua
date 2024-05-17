@@ -8,6 +8,10 @@ vim.g.ctrlp_custom_ignore = {
 packer.use("windwp/nvim-autopairs")
 require("nvim-autopairs").setup({})
 
+-- auto close/rename html tag
+packer.use("windwp/nvim-ts-autotag")
+require("nvim-ts-autotag").setup({})
+
 ---- utilities
 -- packer.use 'chrisbra/Recover.vim' -- smarter .swp files recovery
 -- packer.use 'justinmk/vim-dirvish' -- use - to initiate path navigator (using arrow keys)
