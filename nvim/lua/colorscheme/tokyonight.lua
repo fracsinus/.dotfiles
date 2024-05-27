@@ -2,7 +2,7 @@ local packer = require("packer")
 
 packer.use("folke/tokyonight.nvim")
 
-vim.o.cursorline = 1
+vim.o.cursorline = true
 vim.o.cursorlineopt= "both"
 
 require("tokyonight").setup({
