@@ -24,6 +24,7 @@ abbr --add --global -- grst "git restore --staged"
 abbr --add --global -- grhs "git reset --soft"
 abbr --add --global -- gdn "git diff --name-only"
 abbr --add --global -- gdst "git diff --staged"
+abbr --add --global -- rr "rustup run nightly cargo -Z script"
 alias v nvim
 
 ## zoxide
