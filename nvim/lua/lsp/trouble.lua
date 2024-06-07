@@ -3,7 +3,7 @@
 require("packer").use("folke/trouble.nvim")
 require("trouble").setup({ mode = "document_diagnostics", use_diagnostic_sign = true })
 
-vim.api.nvim_set_keymap("n", "<C-Q>", ":TroubleToggle<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-Q>", ":Trouble diagnostics toggle<CR>", { noremap = true })
 
 local virtual_text = true
 vim.keymap.set(
