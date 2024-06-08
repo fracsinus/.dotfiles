@@ -28,4 +28,3 @@ require("lspconfig").lua_ls.setup({
     return true
   end,
 })
-

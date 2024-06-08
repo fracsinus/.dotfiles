@@ -1,4 +1,4 @@
-local base = require("lsp._base")
+local default = require("configs.lsp._default")
 local util = require("lspconfig/util")
 
 local global_modules = util.path.join(vim.env.FNM_DIR, "aliases", "default", "lib", "node_modules")
@@ -28,6 +28,6 @@ require("lspconfig").volar.setup({
   on_new_config = function(new_config, new_root_dir)
     new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
   end,
-  on_attach = base.on_attach_lsp,
-  capabilities = base.capabilities,
+  on_attach = default.on_attach_lsp,
+  capabilities = default.capabilities,
 })
