@@ -1,10 +1,30 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      highlight = { enable = true, },
-      additional_vim_regex_highlighting = false,
-    }
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "asm",
+          "bash",
+          "c",
+          "css",
+          "html",
+          "javascript",
+          "json",
+          "lua",
+          "python",
+          "rust",
+          "scss",
+          "sql",
+          "ssh_config",
+          "typescript",
+          "vimdoc",
+          "vue",
+        },
+        highlight = { enable = true, },
+        additional_vim_regex_highlighting = false,
+      })
+    end
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
