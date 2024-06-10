@@ -27,6 +27,10 @@ return {
     end
   },
   {
+    "windwp/nvim-ts-autotag",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
+  {
     "JoosepAlviste/nvim-ts-context-commentstring",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {

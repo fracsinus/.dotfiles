@@ -18,8 +18,7 @@ return {
       },
     },
   },
-  { "windwp/nvim-autopairs" },
-  { "windwp/nvim-ts-autotag" },
+  { "windwp/nvim-autopairs", event="InsertEnter", config = true },
   { "christoomey/vim-tmux-navigator" }, -- use C-h,j,k,l to navigate across vim and tmux panes
   { "tpope/vim-eunuch" }, -- use :Rename and :Delete to rename or to delete a file within vim
   { "tpope/vim-repeat" }, -- use . to repeat action
