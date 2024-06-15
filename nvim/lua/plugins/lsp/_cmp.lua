@@ -37,15 +37,16 @@ return {
             end
           ),
         }),
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          -- { name = "vsnip" }, -- For vsnip users.
-          -- { name = "luasnip" }, -- For luasnip users.
-          -- { name = "ultisnips" }, -- For ultisnips users.
-          -- { name = "snippy" }, -- For snippy users.
-        },
-        -- { { name = "nvim_lsp_signature_help" } },
-        { { name = "buffer" }, }
+        sources = cmp.config.sources(
+          {
+            { name = "nvim_lsp" },
+            -- { name = "vsnip" }, -- For vsnip users.
+            -- { name = "luasnip" }, -- For luasnip users.
+            -- { name = "ultisnips" }, -- For ultisnips users.
+            -- { name = "snippy" }, -- For snippy users.
+          },
+          { { name = "nvim_lsp_signature_help" } },
+          { { name = "buffer" }, }
         ),
         experimental = { ghost_text = {} }
       }
