@@ -39,6 +39,32 @@ M = {
       vim.keymap.set("n", "gi", p.goto_preview_implementation, { noremap = true })
     end
   },
+  {
+    "scalameta/nvim-metals",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    ft = { "scala", "sbt", "java", "worksheet.sc" },
+    opts = function()
+      local metals_config = require("metals").bare_config()
+      metals_config.on_attach = require("configs.lsp._default").on_attach_lsp
+
+      return metals_config
+    end,
+    config = function(self, metals_config)
+      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+      vim.api.nvim_create_autocmd(
+        "FileType",
+        {
+          pattern = self.ft,
+          callback = function()
+            require("metals").initialize_or_attach(metals_config)
+          end,
+          group = nvim_metals_group
+        }
+      )
+    end,
+  }
 }
 
 for _, v in ipairs(require("plugins.lsp._cmp")) do

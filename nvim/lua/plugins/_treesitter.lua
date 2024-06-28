@@ -14,6 +14,7 @@ return {
           "lua",
           "python",
           "rust",
+          "scala",
           "scss",
           "sql",
           "ssh_config",
