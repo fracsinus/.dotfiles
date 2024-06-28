@@ -25,6 +25,10 @@ abbr --add --global -- grhs "git reset --soft"
 abbr --add --global -- gdn "git diff --name-only"
 abbr --add --global -- gdst "git diff --staged"
 abbr --add --global -- rr "rustup run nightly cargo -Z script"
+abbr --add --global -- dcu "docker compose up -d"
+abbr --add --global -- dcd "docker compose down"
+abbr --add --global -- dcl "docker compose logs"
+abbr --add --global -- dclf "docker compose logs -f"
 alias v nvim
 
 ## zoxide
