@@ -1,11 +1,18 @@
 return {
-  { "hrsh7th/cmp-buffer" },
-  { "hrsh7th/cmp-cmdline" },
   { "hrsh7th/cmp-nvim-lsp", dependencies = { "neovim/nvim-lspconfig" } },
-  { "hrsh7th/cmp-nvim-lsp-signature-help", dependencies = { "neovim/nvim-lspconfig" } },
+  {
+    -- display function signatures in insert mode
+    "hrsh7th/cmp-nvim-lsp-signature-help",
+    dependencies = { "neovim/nvim-lspconfig" },
+  },
   { "hrsh7th/cmp-path" },
   {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-cmdline" },
+      { "hrsh7th/vim-vsnip" },
+    },
     config = function (_, _)
       local cmp = require("cmp")
       local opts = {
@@ -13,9 +20,6 @@ return {
           -- REQUIRED - you must specify a snippet engine
           expand = function(args)
             vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-            -- require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-            -- require("snippy").expand_snippet(args.body) -- For `snippy` users.
-            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
           end,
         },
         window = {
@@ -23,11 +27,17 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
+          ["<C-L>s"] = function ()
+            if cmp.visible_docs() then
+              cmp.close_docs()
+            else
+              cmp.open_docs()
+            end
+          end,
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
           ["<Tab>"] = cmp.mapping(
             function(fallback)
               if cmp.visible()
@@ -38,15 +48,9 @@ return {
           ),
         }),
         sources = cmp.config.sources(
-          {
-            { name = "nvim_lsp" },
-            -- { name = "vsnip" }, -- For vsnip users.
-            -- { name = "luasnip" }, -- For luasnip users.
-            -- { name = "ultisnips" }, -- For ultisnips users.
-            -- { name = "snippy" }, -- For snippy users.
-          },
+          { { name = "nvim_lsp" } },
           { { name = "nvim_lsp_signature_help" } },
-          { { name = "buffer" }, }
+          { { name = "buffer" } }
         ),
         experimental = { ghost_text = {} }
       }
@@ -79,5 +83,4 @@ return {
       })
     end,
   },
-  { "hrsh7th/vim-vsnip" },
 }
