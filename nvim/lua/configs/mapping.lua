@@ -26,6 +26,10 @@ map("i", "<A-j>", "<Down>", { noremap = true })
 map("i", "<A-k>", "<Up>", { noremap = true })
 map("i", "<A-l>", "<Right>", { noremap = true })
 
+-- indent/dedent in insert mode
+map("i", "<A-i>", "<C-t>", { noremap = true })
+map("i", "<A-d>", "<C-d>", { noremap = true })
+
 -- K to remove highlights
 map("n", "K", ":noh<CR>", { noremap = true })
 -- " Alt+Backspace to remove a previous word
