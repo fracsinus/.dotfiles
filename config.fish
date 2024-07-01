@@ -18,17 +18,24 @@ set -g theme_display_node yes
 
 
 ## abbreviations
+### git (extending cgitc)
 abbr --add --global -- gfu "git fetch upstream"
 abbr --add --global -- gpo "git push origin"
 abbr --add --global -- grst "git restore --staged"
 abbr --add --global -- grhs "git reset --soft"
 abbr --add --global -- gdn "git diff --name-only"
 abbr --add --global -- gdst "git diff --staged"
+
+### rustup
 abbr --add --global -- rr "rustup run nightly cargo -Z script"
-abbr --add --global -- dcu "docker compose up -d"
-abbr --add --global -- dcd "docker compose down"
-abbr --add --global -- dcl "docker compose logs"
-abbr --add --global -- dclf "docker compose logs -f"
+
+### docker
+abbr --add --global -- dku "docker compose up -d"
+abbr --add --global -- dkd "docker compose down"
+abbr --add --global -- dke "docker compose exec"
+abbr --add --global -- dkl "docker compose logs"
+abbr --add --global -- dklf "docker compose logs -f"
+
 alias v nvim
 
 ## zoxide
