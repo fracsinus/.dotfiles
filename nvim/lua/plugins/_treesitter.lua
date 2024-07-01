@@ -18,11 +18,17 @@ return {
           "scss",
           "sql",
           "ssh_config",
+          "tsx",
           "typescript",
           "vimdoc",
           "vue",
+          "yaml",
         },
-        highlight = { enable = true, },
+        highlight = { enable = true },
+        indent = {
+          enable = true,
+          disable = { "yaml" },
+        },
         additional_vim_regex_highlighting = false,
       })
     end
