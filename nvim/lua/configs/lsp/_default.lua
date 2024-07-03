@@ -14,6 +14,14 @@ M.on_attach_lsp = function(client, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set("n", "<leader>gD", "<cmd>tab sb | lua vim.lsp.buf.declaration()<CR>", bufopts)
+  vim.keymap.set("n", "<leader>gd", "<cmd>tab sb | lua vim.lsp.buf.definition()<CR>", bufopts)
+  vim.keymap.set("n", "<leader>gi", "<cmd>tab sb | lua vim.lsp.buf.implementation()<CR>", bufopts)
+  vim.keymap.set("n", "<leader>gt", "<cmd>tab sb | lua vim.lsp.buf.type_definition()<CR>", bufopts)
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set("i", "<C-L>h", vim.lsp.buf.hover, bufopts)
   vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, bufopts)
   vim.keymap.set("n", "<leader>s", vim.lsp.buf.signature_help, bufopts)

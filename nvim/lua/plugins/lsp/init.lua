@@ -33,10 +33,10 @@ M = {
     config = function(_, opts)
       local p = require("goto-preview")
       p.setup(opts)
-      vim.keymap.set("n", "gd", p.goto_preview_definition, { noremap = true })
-      vim.keymap.set("n", "gD", p.goto_preview_declaration, { noremap = true })
-      vim.keymap.set("n", "gt", p.goto_preview_type_definition, { noremap = true })
-      vim.keymap.set("n", "gi", p.goto_preview_implementation, { noremap = true })
+      vim.keymap.set("n", "<A-p>d", p.goto_preview_definition, { noremap = true })
+      vim.keymap.set("n", "<A-p>D", p.goto_preview_declaration, { noremap = true })
+      vim.keymap.set("n", "<A-p>t", p.goto_preview_type_definition, { noremap = true })
+      vim.keymap.set("n", "<A-p>i", p.goto_preview_implementation, { noremap = true })
     end
   },
   {
