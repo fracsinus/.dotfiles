@@ -21,10 +21,7 @@ local function get_typescript_server_path(root_dir)
 end
 
 require("lspconfig").volar.setup({
-  filetypes = { "typescript", "javascript", "vue" },
-  init_options = {
-    vue = { hybridMode = false },
-  },
+  filetypes = { "vue" },
   on_new_config = function(new_config, new_root_dir)
     new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
   end,
