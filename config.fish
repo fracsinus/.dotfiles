@@ -69,3 +69,8 @@ set -gx PATH $HOME/.cargo/bin $PATH
 if [ -f "$(status dirname)/device_config.fish" ]
   . $(status dirname)/device_config.fish
 end
+
+if command -v pipx 1>/dev/null 2>&1
+  fish_add_path ~/.local/bin
+end
+
