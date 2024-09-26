@@ -1,7 +1,7 @@
 local default = require("configs.lsp._default")
 local util = require("lspconfig/util")
 
-require("lspconfig").tsserver.setup({
+require("lspconfig").ts_ls.setup({
   init_options = {
     plugins = {
       {

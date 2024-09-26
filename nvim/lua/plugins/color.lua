@@ -1,3 +1,5 @@
+vim.o.background = "dark"
+
 return {
   {
     "folke/tokyonight.nvim",
