@@ -43,5 +43,8 @@ map("c", "w!!", "%!sudo tee > /dev/null %", {})
 map("v", "<C-c>", '"+y', { noremap = true })
 
 vim.keymap.set("n", "<Leader>q", ":tabc<CR>", { noremap = true })
--- vim.keymap.set("n", "<C-S-PageUp>", ":-tabmove<CR>", { noremap = true })
--- vim.keymap.set("n", "<C-S-PageDown>", ":+tabmove<CR>", { noremap = true })
+
+if vim.fn.has('mac') then
+  vim.keymap.set("n", "<C-S-PageUp>", ":-tabmove<CR>", { noremap = true })
+  vim.keymap.set("n", "<C-S-PageDown>", ":+tabmove<CR>", { noremap = true })
+end
