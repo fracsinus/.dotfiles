@@ -48,3 +48,24 @@ if vim.fn.has('mac') then
   vim.keymap.set("n", "<C-S-PageUp>", ":-tabmove<CR>", { noremap = true })
   vim.keymap.set("n", "<C-S-PageDown>", ":+tabmove<CR>", { noremap = true })
 end
+
+-- toggle virtual text for tagged hints
+vim.keymap.set(
+  "n",
+  "+",
+  function()
+    local config = vim.diagnostic.config()
+    local severity
+    if config ~= nil and config.virtual_text ~= nil then
+      if config.virtual_text.severity == nil then
+        severity = { min = vim.diagnostic.severity.INFO }
+      else
+        severity = nil
+      end
+    end
+    vim.diagnostic.config({
+      virtual_text = { severity = severity },
+    })
+  end,
+  { noremap = true }
+)
