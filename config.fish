@@ -74,3 +74,9 @@ if command -v pipx 1>/dev/null 2>&1
   fish_add_path ~/.local/bin
 end
 
+## mutagen (https://mutagen.io)
+if command -v mutagen >/dev/null
+  abbr --add --global -- mp "mutagen project"
+  abbr --add --global -- mpl "mutagen project list"
+  abbr --add --global -- mps "mutagen project start"
+end
