@@ -10,8 +10,9 @@ return {
         hl.DiagnosticVirtualTextError.bg = nil;
       end,
       on_colors = function(colors)
-        colors.fg_gutter = "#747a8f"
-        colors.terminal_black = "#6d759c"
+        colors.fg_gutter = "#747a8f" -- line numbers
+        colors.comment = "#7b84b0" -- comments
+        -- colors.terminal_black = "#6d759c" -- ???
       end,
     },
     config = function (_, opts)
