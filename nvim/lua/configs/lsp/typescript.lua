@@ -13,5 +13,5 @@ require("lspconfig").ts_ls.setup({
   },
   on_attach = default.on_attach_lsp,
   capabilities = default.capabilities,
-  filetypes = { "typescript", "javascript", "vue" }
+  filetypes = { "typescript", "javascript", "vue", "typescriptreact" }
 })
