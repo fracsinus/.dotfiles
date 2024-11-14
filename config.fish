@@ -80,3 +80,7 @@ if command -v mutagen >/dev/null
   abbr --add --global -- mpl "mutagen project list"
   abbr --add --global -- mps "mutagen project start"
 end
+
+if command -v go >/dev/null
+  fish_add_path ~/go/bin
+end
