@@ -35,7 +35,20 @@ M.on_attach_lsp = function(client, bufnr)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
   vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format { async = true } end, bufopts)
 
-  vim.o.switchbuf = "uselast,usetab,newtab"
+  vim.api.nvim_create_autocmd(
+    "FileType",
+    {
+      pattern = "qf",
+      callback = function()
+        vim.keymap.set(
+          "n",
+          "<CR>",
+          ":set switchbuf+=usetab,newtab<CR><CR>:set switchbuf=uselast<CR>",
+          { buffer = true, noremap = true, silent = true }
+        )
+      end
+    }
+  )
 end
 
 return M
