@@ -15,11 +15,48 @@ M.on_attach_lsp = function(client, bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   vim.keymap.set("n", "<leader>gD", "<cmd>tab sb | lua vim.lsp.buf.declaration()<CR>", bufopts)
-  vim.keymap.set("n", "<leader>gd", "<cmd>tab sb | lua vim.lsp.buf.definition()<CR>", bufopts)
+  vim.keymap.set(
+    "n",
+    "<leader>gd",
+    function()
+      local position = vim.lsp.util.make_position_params()
+      vim.lsp.buf_request_all(
+        0,
+        "textDocument/definition",
+        position,
+        function (response)
+          for _, client_response in pairs(response) do
+            local result = client_response.result
+            if not vim.islist(result) then
+              return
+            end
+            for _, location in pairs(result) do
+              local fname = vim.uri_to_fname(location.uri)
+              local range = location.range
+              vim.cmd("tab drop " .. vim.fn.fnameescape(fname))
+              if range then
+                local row = range.start.line
+                local col = range.start.character
+                vim.api.nvim_win_set_cursor(0, { row + 1, col })
+              end
+            end
+          end
+        end
+      )
+    end,
+    bufopts
+  )
   vim.keymap.set("n", "<leader>gi", "<cmd>tab sb | lua vim.lsp.buf.implementation()<CR>", bufopts)
   vim.keymap.set("n", "<leader>gt", "<cmd>tab sb | lua vim.lsp.buf.type_definition()<CR>", bufopts)
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+  vim.keymap.set(
+    "n",
+    "gd",
+    function()
+      vim.lsp.buf.definition({reuse_win=true})
+    end,
+    bufopts
+  )
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
   vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set("i", "<C-L>h", vim.lsp.buf.hover, bufopts)
@@ -44,7 +81,7 @@ M.on_attach_lsp = function(client, bufnr)
           "n",
           "<CR>",
           ":set switchbuf+=usetab,newtab<CR><CR>:set switchbuf=uselast<CR>",
-          { buffer = true, noremap = true, silent = true }
+          bufopts
         )
       end
     }
