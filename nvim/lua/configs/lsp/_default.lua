@@ -83,12 +83,8 @@ M.on_attach_lsp = function(client, bufnr)
     {
       pattern = "qf",
       callback = function()
-        vim.keymap.set(
-          "n",
-          "<CR>",
-          ":set switchbuf+=usetab,newtab<CR><CR>:set switchbuf=uselast<CR>",
-          bufopts
-        )
+        vim.keymap.set("n", "<CR>", ":set switchbuf+=usetab,newtab<CR><CR>:set switchbuf=uselast<CR>", { noremap=true, silent=true, buffer=0 })
+        vim.keymap.set("n", "q", ":q<CR>", { noremap=true, silent=true, buffer=0 })
       end
     }
   )
