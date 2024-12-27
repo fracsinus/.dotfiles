@@ -13,10 +13,14 @@ M = {
     "rmagatti/goto-preview",
     dependencies = { "neovim/nvim-lspconfig" },
     opts = {
+      height = 20,
       post_open_hook = function(buf, win)
         vim.api.nvim_set_option_value("modifiable", false, { buf = buf })
         vim.keymap.set("n", "q", require("goto-preview").close_all_win, { buffer = buf, noremap = true })
         vim.keymap.set("n", "<BS>", ":q<CR>", { buffer = buf, noremap = true })
+      end,
+      post_close_hook = function(buf, win)
+        vim.api.nvim_set_option_value("modifiable", true, { buf = buf })
       end
     },
     config = function(_, opts)
