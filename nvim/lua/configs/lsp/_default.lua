@@ -33,7 +33,13 @@ M.on_attach_lsp = function(client, bufnr)
             for _, location in pairs(result) do
               local fname = vim.uri_to_fname(location.uri)
               local range = location.range
-              vim.cmd("tab drop " .. vim.fn.fnameescape(fname))
+              local current_buf_name = vim.api.nvim_buf_get_name(0)
+              if fname == current_buf_name then
+                print("current buffer")
+                vim.cmd("tabedit " .. vim.fn.fnameescape(fname))
+              else
+                vim.cmd("tab drop " .. vim.fn.fnameescape(fname))
+              end
               if range then
                 local row = range.start.line
                 local col = range.start.character
