@@ -27,7 +27,7 @@ return {
         highlight = { enable = true },
         indent = {
           enable = true,
-          disable = { "yaml", "sql"},
+          disable = { "yaml", "sql" },
         },
         additional_vim_regex_highlighting = false,
       })

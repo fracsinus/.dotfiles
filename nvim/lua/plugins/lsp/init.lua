@@ -21,7 +21,8 @@ M = {
       end,
       post_close_hook = function(buf, win)
         vim.api.nvim_set_option_value("modifiable", true, { buf = buf })
-      end
+      end,
+      vim_ui_input = false,
     },
     config = function(_, opts)
       local p = require("goto-preview")

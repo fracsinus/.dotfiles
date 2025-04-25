@@ -19,7 +19,7 @@ M.on_attach_lsp = function(client, bufnr)
     "n",
     "<leader>gd",
     function()
-      local position = vim.lsp.util.make_position_params()
+      local position = vim.lsp.util.make_position_params(0, 'utf-8')
       vim.lsp.buf_request_all(
         0,
         "textDocument/definition",
@@ -31,11 +31,11 @@ M.on_attach_lsp = function(client, bufnr)
               return
             end
             for _, location in pairs(result) do
-              local fname = vim.uri_to_fname(location.uri)
+              local uri = location.uri or location.targetUri
+              local fname = vim.uri_to_fname(uri)
               local range = location.range
               local current_buf_name = vim.api.nvim_buf_get_name(0)
               if fname == current_buf_name then
-                print("current buffer")
                 vim.cmd("tabedit " .. vim.fn.fnameescape(fname))
               else
                 vim.cmd("tab drop " .. vim.fn.fnameescape(fname))
@@ -55,14 +55,7 @@ M.on_attach_lsp = function(client, bufnr)
   vim.keymap.set("n", "<leader>gi", "<cmd>tab sb | lua vim.lsp.buf.implementation()<CR>", bufopts)
   vim.keymap.set("n", "<leader>gt", "<cmd>tab sb | lua vim.lsp.buf.type_definition()<CR>", bufopts)
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set(
-    "n",
-    "gd",
-    function()
-      vim.lsp.buf.definition({reuse_win=true})
-    end,
-    bufopts
-  )
+  vim.keymap.set("n", "gd", function() vim.lsp.buf.definition({reuse_win=false}) end, bufopts)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
   vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set("i", "<C-L>h", vim.lsp.buf.hover, bufopts)
