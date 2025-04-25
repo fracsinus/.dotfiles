@@ -1,5 +1,5 @@
 # set -gx TERM xterm-256
-set -x EDITOR /usr/bin/nvim
+set -x EDITOR nvim
 
 
 ## TIME_STYLE
@@ -25,6 +25,9 @@ abbr --add --global -- grst "git restore --staged"
 abbr --add --global -- grhs "git reset --soft"
 abbr --add --global -- gdn "git diff --name-only"
 abbr --add --global -- gdst "git diff --staged"
+abbr --add --global -- gll "git log -L:"
+
+bind ":" expand-abbr or self-insert
 
 ### rustup
 abbr --add --global -- rr "rustup run nightly cargo -Z script"
@@ -83,4 +86,9 @@ end
 
 if command -v go >/dev/null
   fish_add_path ~/go/bin
+end
+
+## bat (https://github.com/sharkdp/bat)
+if command -v bat >/dev/null
+  set -x BAT_THEME Nord
 end
