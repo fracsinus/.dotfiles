@@ -38,7 +38,7 @@ M = {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    ft = { "scala", "sbt", "java", "worksheet.sc" },
+    ft = { "scala", "sbt", "worksheet.sc" },
     opts = function()
       local metals_config = require("metals").bare_config()
       metals_config.on_attach = require("configs.lsp._default").on_attach_lsp
@@ -58,7 +58,11 @@ M = {
         }
       )
     end,
-  }
+  },
+  {
+    "mfussenegger/nvim-jdtls",
+    ft = { "java" },
+  },
 }
 
 for _, v in ipairs(require("plugins.lsp._cmp")) do
