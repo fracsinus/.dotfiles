@@ -6,6 +6,7 @@ vim.diagnostic.config({
   update_in_insert = true,
 })
 
+require("configs.lsp.dartls")
 require("configs.lsp.docker-compose")
 require("configs.lsp.dockerfile")
 require("configs.lsp.lua")
