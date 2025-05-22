@@ -1,5 +1,23 @@
 M = {
-  { "neovim/nvim-lspconfig" },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = {
+        "docker_compose_language_service",
+        "dockerls",
+        -- "jdtls",
+        "lua_ls",
+        "pyright",
+        "ts_ls",
+        "volar",
+      },
+      automatic_enable = false,
+    },
+    dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        "neovim/nvim-lspconfig",
+    },
+  },
   { "ray-x/lsp_signature.nvim", dependencies = { "neovim/nvim-lspconfig" } },
   {
     "folke/trouble.nvim",

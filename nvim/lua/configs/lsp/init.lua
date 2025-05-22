@@ -6,6 +6,8 @@ vim.diagnostic.config({
   update_in_insert = true,
 })
 
+require("mason-lspconfig").setup()
+
 require("configs.lsp.dartls")
 require("configs.lsp.docker-compose")
 require("configs.lsp.dockerfile")
