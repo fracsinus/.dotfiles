@@ -25,6 +25,7 @@ abbr --add --global -- grst "git restore --staged"
 abbr --add --global -- grhs "git reset --soft"
 abbr --add --global -- gdn "git diff --name-only"
 abbr --add --global -- gdst "git diff --staged"
+abbr --add --global -- glgp1 "git log --stat -p -n 1"
 abbr --add --global -- gll "git log -L:"
 
 bind ":" expand-abbr or self-insert
@@ -91,4 +92,9 @@ end
 ## bat (https://github.com/sharkdp/bat)
 if command -v bat >/dev/null
   set -x BAT_THEME Nord
+end
+
+## fzf (https://github.com/junegunn/fzf)
+if command -v fzf >/dev/null
+  fzf --fish | source
 end
