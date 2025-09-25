@@ -8,6 +8,8 @@ return {
       transparent = true,
       on_highlights = function(hl, _)
         hl.DiagnosticVirtualTextError.bg = nil;
+        hl.DiffAdd.fg = "#b8db87"
+        hl.DiffDelete.fg = "#e26a75"
       end,
       on_colors = function(colors)
         colors.fg_gutter = "#747a8f" -- line numbers
