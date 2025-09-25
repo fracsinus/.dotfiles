@@ -1,3 +1,5 @@
+vim.o.shiftwidth = 4
+
 local default = require("configs.lsp._default")
 local util = require("lspconfig/util")
 
@@ -12,18 +14,22 @@ local fork_root = util.path.join(home, ".local", "eclipse.jdt.ls")
 local jdtls_root = util.path.join(fork_root, "org.eclipse.jdt.ls.product", "target", "repository")
 local lombok_path = util.path.join(fork_root, "lombok.jar")
 
+-- local mason_registry = require("mason-registry")
+-- local mason_jdtls = mason_registry.get_package("jdtls")
+
 local config = {
   cmd = {
     util.path.join(jdtls_root, "bin", "jdtls"),
-    "--jvm-arg=-Declipse.application=org.eclipse.jdt.ls.core.id1",
-    "--jvm-arg=-Dosgi.bundles.defaultStartLevel=4",
-    "--jvm-arg=-Declipse.product=org.eclipse.jdt.ls.core.product",
+    -- "/Users/user/.local/share/nvim/mason/packages/jdtls/jdtls",
     "--jvm-arg=-Dlog.protocol=true",
     "--jvm-arg=-Dlog.level=ALL",
     "--jvm-arg=-Xmx1g",
     "--jvm-arg=-javaagent:" .. lombok_path,
+    -- "/Users/user/.local/share/nvim/mason/packages/jdtls/lombok.jar",
+    "--jvm-arg=-Djava.autobuild=false",
     "-configuration",
     util.path.join(jdtls_root, "config_mac_arm"),
+    -- "/Users/user/.local/share/nvim/mason/packages/jdtls/config_mac_arm",
     "-data",
     workspace_dir,
   },
@@ -31,13 +37,31 @@ local config = {
   settings = {
     java = {
       autobuild = { enabled = false },
-      maven = { enabled = false, offline = { enabled = true } },
-      gradle = { enabled = false, offline = { enabled = true } },
+      -- format = {
+      --   settings = {
+      --     url = util.path.join(root_dir, ".vscode", "java-formatter.xml"),
+      --     profile = "JavaConventions",
+      --   },
+      -- },
+      -- configuration = {
+      --   updateBuildConfiguration = 'disabled',
+      -- },
+      -- import = {
+      --   maven = { enabled = false },
+      --   gradle = { enabled = false },
+      -- },
+      -- project = {
+      --   resourceFilters = {},
+      -- },
       references = {
-        includeDecompiledSources = false,
+        -- includeClassFiles = true,
+        -- includeDecompiledSources = false,
       },
       search = { scope = "main" },
     },
+  },
+  init_options = {
+    -- bundles = vim.fn.glob(util.path.join(home, ".local", "vscode-java-test", "server", "*.jar"), false, true),
   },
   capabilities = default.capabilities,
   on_attach = default.on_attach_lsp,
