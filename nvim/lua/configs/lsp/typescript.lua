@@ -1,7 +1,7 @@
 local default = require("configs.lsp._default")
 local util = require("lspconfig/util")
 
-require("lspconfig").ts_ls.setup({
+vim.lsp.config.ts_ls = {
   init_options = {
     plugins = {
       {
@@ -14,4 +14,5 @@ require("lspconfig").ts_ls.setup({
   on_attach = default.on_attach_lsp,
   capabilities = default.capabilities,
   filetypes = { "typescript", "javascript", "vue", "typescriptreact" }
-})
+}
+vim.lsp.enable("ts_ls")

@@ -9,7 +9,7 @@ M = {
         "lua_ls",
         "pyright",
         "ts_ls",
-        "volar",
+        "vue_ls",
       },
       automatic_enable = false,
     },

@@ -5,7 +5,7 @@ local function on_attach(client, bufnr)
   vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 end
 
-require("lspconfig").rust_analyzer.setup({
+vim.lsp.config.rust_analyzer = {
   settings = {
     ["rust-analyzer"] = {
       cargo = { allFeatures = true },
@@ -14,5 +14,5 @@ require("lspconfig").rust_analyzer.setup({
   },
   on_attach = on_attach,
   capabilities = default.capabilities,
-})
-
+}
+vim.lsp.enable("rust_analyzer")

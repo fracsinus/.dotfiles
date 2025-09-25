@@ -30,20 +30,17 @@ M.on_attach_lsp = function(client, bufnr)
             if not vim.islist(result) then
               return
             end
-            for _, location in pairs(result) do
-              local uri = location.uri or location.targetUri
-              local fname = vim.uri_to_fname(uri)
-              local range = location.range
-              local current_buf_name = vim.api.nvim_buf_get_name(0)
-              if fname == current_buf_name then
-                vim.cmd("tabedit " .. vim.fn.fnameescape(fname))
-              else
-                vim.cmd("tab drop " .. vim.fn.fnameescape(fname))
-              end
-              if range then
-                local row = range.start.line
-                local col = range.start.character
-                vim.api.nvim_win_set_cursor(0, { row + 1, col })
+            local items = vim.lsp.util.locations_to_items(result, 'utf-8');
+            for _, item in pairs(items) do
+              local fname = item.filename
+              if fname then
+                local current_buf_name = vim.api.nvim_buf_get_name(0)
+                if fname == current_buf_name then
+                  vim.cmd("tabedit " .. vim.fn.fnameescape(fname))
+                else
+                  vim.cmd("tab drop " .. vim.fn.fnameescape(fname))
+                end
+                vim.api.nvim_win_set_cursor(0, { item.lnum, item.col - 1 })
               end
             end
           end
@@ -59,7 +56,7 @@ M.on_attach_lsp = function(client, bufnr)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
   vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set("i", "<C-L>h", vim.lsp.buf.hover, bufopts)
-  vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, bufopts)
+  vim.keymap.set("n", "<A-h>", vim.lsp.buf.hover, bufopts)
   vim.keymap.set("n", "<leader>s", vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
   vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
