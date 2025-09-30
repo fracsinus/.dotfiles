@@ -34,7 +34,9 @@ bind ":" expand-abbr or self-insert
 abbr --add --global -- rr "rustup run nightly cargo -Z script"
 
 ### docker
+abbr --add --global -- dkp "docker compose ps"
 abbr --add --global -- dku "docker compose up -d"
+abbr --add --global -- dkr "docker compose restart"
 abbr --add --global -- dkd "docker compose down"
 abbr --add --global -- dke "docker compose exec"
 abbr --add --global -- dkl "docker compose logs"
