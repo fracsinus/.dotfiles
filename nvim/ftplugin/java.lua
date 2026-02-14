@@ -9,27 +9,19 @@ local root_dir = require("jdtls.setup").find_root({".git", "mvnw", "gradlew"})
 local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
 local workspace_dir = util.path.join(home, ".cache", "jdtls", "workspace-" .. project_name)
 
-local fork_root = util.path.join(home, ".local", "eclipse.jdt.ls")
-
-local jdtls_root = util.path.join(fork_root, "org.eclipse.jdt.ls.product", "target", "repository")
-local lombok_path = util.path.join(fork_root, "lombok.jar")
-
--- local mason_registry = require("mason-registry")
--- local mason_jdtls = mason_registry.get_package("jdtls")
+local mason_root = util.path.join(vim.fn.stdpath("data"), "/mason")
+local jdtls_root = util.path.join(mason_root, "packages", "jdtls")
 
 local config = {
   cmd = {
-    util.path.join(jdtls_root, "bin", "jdtls"),
-    -- "/Users/user/.local/share/nvim/mason/packages/jdtls/jdtls",
+    util.path.join(mason_root, "bin", "jdtls"),
     "--jvm-arg=-Dlog.protocol=true",
     "--jvm-arg=-Dlog.level=ALL",
     "--jvm-arg=-Xmx1g",
-    "--jvm-arg=-javaagent:" .. lombok_path,
-    -- "/Users/user/.local/share/nvim/mason/packages/jdtls/lombok.jar",
+    "--jvm-arg=-javaagent:" .. util.path.join(jdtls_root, "lombok.jar"),
     "--jvm-arg=-Djava.autobuild=false",
     "-configuration",
     util.path.join(jdtls_root, "config_mac_arm"),
-    -- "/Users/user/.local/share/nvim/mason/packages/jdtls/config_mac_arm",
     "-data",
     workspace_dir,
   },

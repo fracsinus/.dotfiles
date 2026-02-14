@@ -2,34 +2,22 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "asm",
-          "bash",
-          "c",
-          "css",
-          "html",
-          "javascript",
-          "json",
-          "lua",
-          "python",
-          "rust",
-          "scala",
-          "scss",
-          "sql",
-          "ssh_config",
-          "tsx",
-          "typescript",
-          "vimdoc",
-          "vue",
-          "yaml",
-        },
-        highlight = { enable = true },
-        indent = {
-          enable = true,
-          disable = { "yaml", "sql" },
-        },
-        additional_vim_regex_highlighting = false,
+      -- Filetypes where treesitter indent has issues (JSX/TSX)
+      local exclude_indent = { "typescriptreact", "javascriptreact" }
+
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = vim.tbl_deep_extend(
+          "force",
+          require('nvim-treesitter').get_installed(),
+          { "sh", "typescriptreact", }
+        ),
+        callback = function()
+          vim.treesitter.start()
+          -- Skip treesitter indent for problematic filetypes
+          if not vim.tbl_contains(exclude_indent, vim.bo.filetype) then
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end,
       })
     end
   },
