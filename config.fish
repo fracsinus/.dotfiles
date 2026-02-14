@@ -16,6 +16,7 @@ set -g theme_display_jobs_verbose yes
 set -g theme_color_scheme nord
 set -g theme_display_node yes
 
+set -g fish_color_autosuggestion 8186a3
 
 ## abbreviations
 ### git (extending cgitc)
