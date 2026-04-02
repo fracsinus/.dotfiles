@@ -18,7 +18,7 @@ vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.expandtab = true -- insert spaces instead of tab in insert mode
 vim.o.inde = nil
-vim.o.autoindent = true
+-- vim.o.autoindent = true
 
 ---- display line number
 vim.wo.nu = true
