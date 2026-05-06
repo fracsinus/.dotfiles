@@ -1,5 +1,0 @@
-{
-  "workspace": {
-    "library": ["$VIMRUNTIME", "stdpath('data')..'/lazy'"]
-  }
-}

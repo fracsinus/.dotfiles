@@ -1,16 +1,26 @@
 local default = require("configs.lsp._default")
-local util = require("lspconfig/util")
 
+---@return string?
 local function get_python_path()
   if vim.env.PYENV_VIRTUAL_ENV then
-    return util.path.join(vim.env.VIRTUAL_ENV, "bin", "python")
+    return table.concat({vim.env.VIRTUAL_ENV, "bin", "python"})
   end
 
-  return vim.fn.exepath("python")
+  return nil
 end
 
-vim.lsp.config.pyright = {
+---@type vim.lsp.Config
+local config = {
   single_file_support = true,
+  root_markers = {
+    'pyrightconfig.json',
+    'pyproject.toml',
+    'setup.py',
+    'setup.cfg',
+    'requirements.txt',
+    'Pipfile',
+    '.git',
+  },
   settings = {
     analysis = {
       diagnosticMode = "openFilesOnly",
@@ -19,7 +29,12 @@ vim.lsp.config.pyright = {
   on_attach = default.on_attach_lsp,
   capabilities = default.capabilities,
   before_init = function(_, config)
-    config.settings.python.pythonPath = get_python_path()
+    local python_path = get_python_path()
+    if python_path then
+      config.settings.python.pythonPath = python_path
+    end
   end,
 }
+
+vim.lsp.config("pyright", config)
 vim.lsp.enable("pyright")
