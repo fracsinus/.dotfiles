@@ -28,6 +28,7 @@ abbr --add --global -- gdn "git diff --name-only"
 abbr --add --global -- gdst "git diff --staged"
 abbr --add --global -- glgp1 "git log --stat -p -n 1"
 abbr --add --global -- gll "git log -L:"
+abbr --add --global -- gmm "git merge --no-ff"
 
 bind ":" expand-abbr or self-insert
 
