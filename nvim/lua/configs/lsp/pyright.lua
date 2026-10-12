@@ -3,7 +3,7 @@ local default = require("configs.lsp._default")
 ---@return string?
 local function get_python_path()
   if vim.env.PYENV_VIRTUAL_ENV then
-    return table.concat({vim.env.VIRTUAL_ENV, "bin", "python"})
+    return table.concat({vim.env.VIRTUAL_ENV, "bin", "python"}, "/")
   end
 
   return nil
