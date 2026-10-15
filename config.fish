@@ -66,7 +66,7 @@ end
 
 ## Node.js
 ### fnm
-if command -v fnm
+if command -v fnm 1>/dev/null 2>&1
   fnm env --use-on-cd | source
 end
 
