@@ -59,16 +59,16 @@ set -x PYTHONDONTWRITEBYTECODE 1
 if command -v pyenv 1>/dev/null 2>&1
   pyenv init - | source
   pyenv init --path | source
+
+  ### pyenv-virtualenv init
+  status --is-interactive; and pyenv virtualenv-init - | source
 end
-
-### pyenv-virtualenv init
-status --is-interactive; and pyenv virtualenv-init - | source
-
 
 ## Node.js
 ### fnm
-fnm env --use-on-cd | source
-
+if command -v fnm
+  fnm env --use-on-cd | source
+end
 
 ## Rust
 set -gx PATH $HOME/.cargo/bin $PATH
